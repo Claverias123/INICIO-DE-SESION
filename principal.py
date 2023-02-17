@@ -11,10 +11,6 @@ def main(page: ft.Page):
     #------------- fin del diseño de página ---------------
 
     #--------- función notificación usu y contr correcta-----------
-    def open_dlg(e):
-        page.dialog = dlg
-        dlg.open = True
-        page.update()
 
     #------------- Función del botón ----------------------
     def botónGuardarNombreY (w):
@@ -24,11 +20,37 @@ def main(page: ft.Page):
         for linea in i:
             t = linea.replace("\n","")
             vVariable.append(t)
-        print (vVariable)
+        
 
-        if colDatos==vVariable:
-            vVariable=[]
-        print(open_dlg)
+        #Leer datos introducidos por teclado
+        if (vVariable.count(tfnombre.value) > 0) and (vVariable.count(tfpassword.value) > 0):
+            #Encontrada usu y pass
+            
+            dlg1=ft.AlertDialog(title=ft.Text("Inicio de sesión correcto"))
+            dlg1.open = True                
+            page.dialog = dlg1
+        
+        
+        
+        else:
+            contador=0
+            #No se encuentra
+            dlg=ft.AlertDialog(title=ft.Text("Inicio de sesión incorrecto"))
+            dlg.open = True                
+            page.dialog = dlg
+            contador=contador+1
+            if contador>3:
+
+                dlg3=ft.AlertDialog(title=ft.Text("Usuario bloqueado"))
+                dlg3.open = True                
+                page.dialog = dlg3        
+
+
+
+        page.update()
+        
+           
+        
 
 
             
@@ -49,7 +71,8 @@ def main(page: ft.Page):
     tfpassword=ft.TextField(label="Contraseña", password= True ,can_reveal_password= True, width=500)
     colDatos=ft.Column(controls=[tfnombre,tfpassword])
     contDatos=ft.Container(content=colDatos, bgcolor=ft.colors.PURPLE_300,width=200,padding=ft.padding.only(bottom=100)) 
-    dlg=ft.AlertDialog(title=ft.Text("Inicio de sesión correcto"))
+    
+    
  
 
     
