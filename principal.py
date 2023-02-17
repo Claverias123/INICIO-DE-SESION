@@ -35,10 +35,16 @@ def main(page: ft.Page):
         else:
             contador=0
             #No se encuentra
-            dlg=ft.AlertDialog(title=ft.Text("Inicio de sesión incorrecto"))
-            dlg.open = True                
-            page.dialog = dlg
-            contador=contador+1
+            if contador < 0:
+                dlg=ft.AlertDialog(title=ft.Text("Inicio de sesión incorrecto"))
+                dlg.open = True                
+                page.dialog = dlg
+                contador=contador+1
+            if contador>2:
+                    dlg2=ft.AlertDialog(title=ft.Text("Inicio de sesión incorrecto"))
+                    dlg2.open = True                
+                    page.dialog = dlg2
+                    contador=contador+1
             if contador>3:
 
                 dlg3=ft.AlertDialog(title=ft.Text("Usuario bloqueado"))
