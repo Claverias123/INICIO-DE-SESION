@@ -6,8 +6,8 @@ def main(page: ft.Page):
     page.title = "INICIO DE SESIÓN"
     page.bgcolor=ft.colors.PURPLE_300
     page.horizontal_alignment=ft.CrossAxisAlignment.CENTER
-    page.window_height=850
-    page.window_width=500
+    page.window_height=950
+    page.window_width=1800
     page.update()
     cont = ft.TextField(value=1)
     #------------- fin del diseño de página ---------------
