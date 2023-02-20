@@ -78,17 +78,21 @@ def main(page: ft.Page):
                     width=500,
                     height=500)
 
-    boton=ft.FilledButton("Iniciar sesión", on_click=botónGuardarNombreY)
-    tfnombre=ft.TextField(label="Nombre")
-    tfpassword=ft.TextField(label="Contraseña", password= True ,can_reveal_password= True, width=500)
-    colDatos=ft.Column(controls=[tfnombre,tfpassword])
-    contDatos=ft.Container(content=colDatos, bgcolor=ft.colors.PURPLE_300,width=200,padding=ft.padding.only(bottom=100)) 
+    #-----------requisitos de la contraseña----------------
+    text_contra= ft.Text("\n \n \n  Requisitos de la contraseña: \n 1- Debe contener al menos 10 letras, incluyendo una mayúscula. \n 2- Debe contener al menos tres números. \n 3- Debe contener al menos un símbolo tal como ($).",size=13)
     
+    #----------- fin de los requisitos---------------
+    boton=ft.FilledButton("Iniciar sesión")
+    tfnombre=ft.TextField(label="Nombre")
+    tfpassword=ft.TextField(label="Contraseña")
+    colDatos=ft.Column(controls=[tfnombre,tfpassword])
+
+    row=ft.Row(controls=[(colDatos),(text_contra)])
+    
+    contDatos=ft.Container(content=row,width=200,padding=ft.padding.only(bottom=10)) 
     
  
 
-    
-    
     
     page.add(img,contDatos,boton)
 
