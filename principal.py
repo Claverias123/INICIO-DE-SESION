@@ -1,4 +1,5 @@
 import flet as ft
+import time
 
 def main(page: ft.Page):
     #------------------ Diseño de la página-----------------------
@@ -8,6 +9,7 @@ def main(page: ft.Page):
     page.window_height=850
     page.window_width=500
     page.update()
+    cont = ft.TextField(value=1)
     #------------- fin del diseño de página ---------------
 
     #--------- función notificación usu y contr correcta-----------
@@ -15,6 +17,7 @@ def main(page: ft.Page):
     #------------- Función del botón ----------------------
     def botónGuardarNombreY (w):
         vVariable=[]
+        contador = cont.value
         i=open("archivo.txt", "r")
 
         for linea in i:
@@ -33,24 +36,27 @@ def main(page: ft.Page):
         
         
         else:
-            contador=0
+            
             #No se encuentra
-            if contador < 0:
+            if contador==1:
                 dlg=ft.AlertDialog(title=ft.Text("Inicio de sesión incorrecto"))
                 dlg.open = True                
                 page.dialog = dlg
                 contador=contador+1
-            if contador>2:
+            elif contador==2:
                     dlg2=ft.AlertDialog(title=ft.Text("Inicio de sesión incorrecto"))
                     dlg2.open = True                
                     page.dialog = dlg2
                     contador=contador+1
-            if contador>3:
-
+            elif contador==3:
                 dlg3=ft.AlertDialog(title=ft.Text("Usuario bloqueado"))
                 dlg3.open = True                
-                page.dialog = dlg3        
+                page.dialog = dlg3
+                page.update()
+                time.sleep(3)
+                page.window_close()      
 
+            cont.value=contador
 
 
         page.update()
